@@ -18,6 +18,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 " onedark colour scheme
 Plug 'joshdick/onedark.vim'
 
+" HTML tag support
+Plug 'vim-scripts/HTML-AutoCloseTag'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins recommended by https://sharksforarms.dev/posts/neovim-rust/ "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

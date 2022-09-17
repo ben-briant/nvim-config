@@ -8,8 +8,11 @@ endif
 
 " vim plugins
 call plug#begin()
-" nicer statusline + icons
+" nicer statusline + filebrowser + tab bar + icons
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'preservim/nerdtree'
+Plug 'romgrk/barbar.nvim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " onedark colour scheme
@@ -55,6 +58,22 @@ set number
 " Highlight current line
 set cursorline
 
+set smartindent
+set backspace=indent,eol,start
+set incsearch
+set ruler
+set wildmenu
+set mouse=a
+
+" Ignore case when searching with lowercase
+" Check case when searching with uppercase
+set ignorecase
+set smartcase
+
+" merge number and diagnostics column
+" this removes the jitter when warnings/errors flow in
+set signcolumn=number
+
 """"""""""""""""""""""
 " Normal mode remaps "
 """"""""""""""""""""""
@@ -66,7 +85,8 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
 " Open file browser to side
-nnoremap <C-b> :Lexplore<return>
+let g:netrw_winsize=30
+nnoremap <C-b> :NERDTreeToggle<return>
 
 
 """"""""""""""""""""""
@@ -75,29 +95,6 @@ nnoremap <C-b> :Lexplore<return>
 
 " Map shift-tab to unindent in insert mode
 inoremap <S-Tab> <C-d>
-
-""""""""""""""""""""
-" General settings "
-""""""""""""""""""""
-set smartindent
-set backspace=indent,eol,start
-set incsearch
-set ruler
-set wildmenu
-
-" Ignore case when searching with lowercase
-" Check case when searching with uppercase
-set ignorecase
-set smartcase
-
-" merge number and diagnostics column
-" this removes the jitter when warnings/errors flow in
-set signcolumn=number
-
-""""""""""""""""
-" Autocommands "
-""""""""""""""""
-" autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
 
 """""""""""""""""""""""
 " Neovim LSP settings "
@@ -114,13 +111,14 @@ set shortmess+=c
 
 " Source lua side of config
 lua require('config')
+" Initialize statusline
 lua require('lualine').setup()
 
 " Code navigation shortcuts
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>

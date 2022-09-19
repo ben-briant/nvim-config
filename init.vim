@@ -11,7 +11,7 @@ call plug#begin()
 " nicer statusline + filebrowser + tab bar + icons
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'preservim/nerdtree'
-Plug 'romgrk/barbar.nvim'
+" Plug 'romgrk/barbar.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -20,6 +20,9 @@ Plug 'joshdick/onedark.vim'
 
 " HTML tag support
 Plug 'vim-scripts/HTML-AutoCloseTag'
+
+" Bracket closer
+Plug 'windwp/nvim-autopairs'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins recommended by https://sharksforarms.dev/posts/neovim-rust/ "
@@ -76,6 +79,9 @@ set smartcase
 " merge number and diagnostics column
 " this removes the jitter when warnings/errors flow in
 set signcolumn=number
+
+" Limit suggestion menu height to 15 items
+set pumheight=10
 
 """"""""""""""""""""""
 " Normal mode remaps "

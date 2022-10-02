@@ -43,7 +43,6 @@ local opts = {
 
 }
 
-require('rust-tools').setup(opts)
 
 
 -- Setup Completion
@@ -81,9 +80,17 @@ cmp.setup({
   },
 })
 
+-- Server configurations
+-- Available here:
+--  https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
+require('rust-tools').setup(opts)
+
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
 
-require'lspconfig'.hls.setup{}
+require('lspconfig').hls.setup{}
+
+require('lspconfig').bashls.setup{}

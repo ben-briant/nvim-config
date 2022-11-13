@@ -24,6 +24,9 @@ Plug 'vim-scripts/HTML-AutoCloseTag'
 " Bracket closer
 Plug 'windwp/nvim-autopairs'
 
+" Toggle diagnostics
+Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins recommended by https://sharksforarms.dev/posts/neovim-rust/ "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,6 +52,9 @@ call plug#end()
 " enable syntax highlighting
 syntax enable
 filetype plugin indent on
+
+" Set leader to comma
+let mapleader = ","
 
 " set colorscheme
 colorscheme onedark
@@ -97,6 +103,8 @@ nnoremap <C-l> <C-w><C-l>
 let g:netrw_winsize=30
 nnoremap <C-b> :NERDTreeToggle<return>
 
+" Make double-<Esc> clear search highlights
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 """"""""""""""""""""""
 " Insert mode remaps "
@@ -147,3 +155,16 @@ nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
+
+xnoremap <expr> I mode() ==# 'v' ? "\<c-v>I" : mode() ==# 'V' ? "\<c-v>^o^I" : "I"
+xnoremap <expr> A mode() ==# 'v' ? "\<c-v>A" : mode() ==# 'V' ? "\<c-v>Oo$A" : "A"
+
+nmap <leader>tlu <Plug>(toggle-lsp-diag-underline)
+nmap <leader>tls <Plug>(toggle-lsp-diag-signs)
+nmap <leader>tlv <Plug>(toggle-lsp-diag-vtext)
+nmap <leader>tlp <Plug>(toggle-lsp-diag-update_in_insert)
+
+nmap <leader>tld  <Plug>(toggle-lsp-diag)
+nmap <leader>tldd <Plug>(toggle-lsp-diag-default)
+nmap <leader>tldo <Plug>(toggle-lsp-diag-off)
+nmap <leader>tldf <Plug>(toggle-lsp-diag-on)

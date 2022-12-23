@@ -47,6 +47,9 @@ Plug 'simrat39/rust-tools.nvim'
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
 
+" C/C++ formatting
+Plug 'rhysd/vim-clang-format'
+
 call plug#end()
 
 " enable syntax highlighting
@@ -155,6 +158,8 @@ nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
+" Auto format c/cpp files on save
+let g:clang_format#auto_format = 1
 
 xnoremap <expr> I mode() ==# 'v' ? "\<c-v>I" : mode() ==# 'V' ? "\<c-v>^o^I" : "I"
 xnoremap <expr> A mode() ==# 'v' ? "\<c-v>A" : mode() ==# 'V' ? "\<c-v>Oo$A" : "A"

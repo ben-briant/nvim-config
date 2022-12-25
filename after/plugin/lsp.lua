@@ -1,10 +1,47 @@
-require("nvim-autopairs").setup {}
-require('lspconfig').clangd.setup{}
+-- Functional wrapper for mapping custom keybindings
+function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+-- Creates a silent mapping
+function smap(mode, lhs, rhs)
+    vim.api.nvim_set_keymap(mode, lhs, rhs, {silent = true})
+end
+
+local nvim_lsp = require('lspconfig')
+
+-- Code navigation shortcuts
+smap("n", "<c-]>", "vim.lsp.buf.definition()<CR>")
+smap("n", "K"    , "<cmd>lua vim.lsp.buf.hover()<CR>")
+smap("n", "gD"   , "<cmd>lua vim.lsp.buf.implementation()<CR>")
+smap("n", "1gD"  , "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+smap("n", "gr"   , "<cmd>lua vim.lsp.buf.references()<CR>")
+smap("n", "g0"   , "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+smap("n", "gW"   , "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+smap("n", "gd"   , "<cmd>lua vim.lsp.buf.definition()<CR>")
+smap("n", "ga"   , "<cmd>lua vim.lsp.buf.code_action()<CR>")
+smap("n", "g["   , "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+smap("n", "g]"   , "<cmd>lua vim.diagnostic.goto_next()<CR>")
+
+-- LSP diagnostic toggles
+map("n", "<leader>tlu", "<Plug>(toggle-lsp-diag-underline)")
+map("n", "<leader>tls", "<Plug>(toggle-lsp-diag-signs)")
+map("n", "<leader>tlv", "<Plug>(toggle-lsp-diag-vtext)")
+map("n", "<leader>tlp", "<Plug>(toggle-lsp-diag-update_in_insert)")
+
+map("n", "<leader>tld", " <Plug>(toggle-lsp-diag)")
+map("n", "<leader>tldd", "<Plug>(toggle-lsp-diag-default)")
+map("n", "<leader>tldo", "<Plug>(toggle-lsp-diag-off)")
+map("n", "<leader>tldf", "<Plug>(toggle-lsp-diag-on)")
+
 
 --  Configure LSP through rust-tools.nvim plugin.
 --  rust-tools will configure and enable certain LSP features for us.
 --  See https://github.com/simrat39/rust-tools.nvim#configuration
-local nvim_lsp = require('lspconfig')
 local rt = require('rust-tools')
 
 local opts = {
@@ -86,11 +123,13 @@ cmp.setup({
 
 require('rust-tools').setup(opts)
 
-require('lspconfig')['pyright'].setup{
+nvim_lsp['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
 
-require('lspconfig').hls.setup{}
+nvim_lsp.hls.setup{}
 
-require('lspconfig').bashls.setup{}
+nvim_lsp.bashls.setup{}
+
+nvim_lsp.clangd.setup{}

@@ -12,11 +12,13 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
+  -- Packer
+  use 'wbthomason/packer.nvim'
+
   -- nicer statusline + filebrowser + tab bar + icons
   use 'nvim-lualine/lualine.nvim'
   use 'preservim/nerdtree'
   -- use 'romgrk/barbar.nvim'
-  use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
   
   -- onedark colour scheme
@@ -33,10 +35,17 @@ return require('packer').startup(function(use)
   
   -- Commenting
   use 'tpope/vim-commentary'
+
+  -- Tmux navigation
+  use 'christoomey/vim-tmux-navigator'
   
   -- Telescope (fuzzy finding)
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-lua/plenary.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+  }
   
   -- Collection of common configurations for the Nvim LSP client
   use 'neovim/nvim-lspconfig'

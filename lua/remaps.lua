@@ -24,7 +24,7 @@ map("n", "<C-b>", ":NERDTreeToggle<CR>")
 map("n", "<Esc><Esc>", "<Esc>:noh<CR><Esc>")
 
 -- Comment the current selection
-map "<C-_>" ":Commentary<CR><Esc>"
+map("n", "<C-_>", ":Commentary<CR><Esc>")
 
 ----------------------------
 --   Insert mode remaps   --

@@ -10,6 +10,7 @@ set shiftwidth=4
 set expandtab
 
 lua require("plugins")
+lua require("remaps")
 
 " Line numbers
 set number

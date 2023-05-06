@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/ben/.local/share/nvim/site/pack/packer/start/HTML-AutoCloseTag",
     url = "https://github.com/vim-scripts/HTML-AutoCloseTag"
   },
+  LuaSnip = {
+    loaded = true,
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/ben/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -94,15 +99,30 @@ _G.packer_plugins = {
     path = "/home/ben/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
-  ["cmp-vsnip"] = {
+  ["friendly-snippets"] = {
     loaded = true,
-    path = "/home/ben/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
-    url = "https://github.com/hrsh7th/cmp-vsnip"
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["lsp-zero.nvim"] = {
+    loaded = true,
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/ben/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
   },
   nerdtree = {
     loaded = true,
@@ -129,10 +149,10 @@ _G.packer_plugins = {
     path = "/home/ben/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["onedark.vim"] = {
+  ["onedark.nvim"] = {
     loaded = true,
-    path = "/home/ben/.local/share/nvim/site/pack/packer/start/onedark.vim",
-    url = "https://github.com/joshdick/onedark.vim"
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/onedark.nvim",
+    url = "https://github.com/navarasu/onedark.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -169,10 +189,10 @@ _G.packer_plugins = {
     path = "/home/ben/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
-  ["vim-vsnip"] = {
+  ["vim-tmux-navigator"] = {
     loaded = true,
-    path = "/home/ben/.local/share/nvim/site/pack/packer/start/vim-vsnip",
-    url = "https://github.com/hrsh7th/vim-vsnip"
+    path = "/home/ben/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
+    url = "https://github.com/christoomey/vim-tmux-navigator"
   }
 }
 

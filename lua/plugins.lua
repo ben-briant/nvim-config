@@ -20,25 +20,26 @@ return require('packer').startup(function(use)
   use 'preservim/nerdtree'
   -- use 'romgrk/barbar.nvim'
   use 'kyazdani42/nvim-web-devicons'
-  
+
   -- onedark colour scheme
-  use 'joshdick/onedark.vim'
-  
+  -- use 'joshdick/onedark.vim'
+  use 'navarasu/onedark.nvim'
+
   -- HTML tag support
   use 'vim-scripts/HTML-AutoCloseTag'
-  
+
   -- Bracket closer
   use 'windwp/nvim-autopairs'
-  
+
   -- Toggle diagnostics
   use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-  
+
   -- Commenting
   use 'tpope/vim-commentary'
 
   -- Tmux navigation
   use 'christoomey/vim-tmux-navigator'
-  
+
   -- Telescope (fuzzy finding)
   use {
     'nvim-telescope/telescope.nvim',
@@ -46,24 +47,37 @@ return require('packer').startup(function(use)
       'nvim-lua/plenary.nvim'
     },
   }
-  
-  -- Collection of common configurations for the Nvim LSP client
-  use 'neovim/nvim-lspconfig'
-  -- Completion framework
-  use 'hrsh7th/nvim-cmp'
-  -- LSP completion source for nvim-cmp
-  use 'hrsh7th/cmp-nvim-lsp'
-  -- Snippet completion source for nvim-cmp
-  use 'hrsh7th/cmp-vsnip'
+
+  -- LSP shenanigans
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    requires = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {                                      -- Optional
+        'williamboman/mason.nvim',
+        run = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},                  -- Required
+      {'hrsh7th/cmp-nvim-lsp'},              -- Required
+      {'hrsh7th/cmp-path'},                  -- Optional
+      {'hrsh7th/cmp-buffer'},                -- Optional
+      {'L3MON4D3/LuaSnip'},                  -- Required
+      {'rafamadriz/friendly-snippets'},      -- Optional
+    }
+  }
+
   -- Other usefull completion sources
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-buffer'
   -- See hrsh7th's other plugins for more completion sources!
   -- To enable more of the features of rust-analyzer, such as inlay hints and more!
   use 'simrat39/rust-tools.nvim'
-  -- Snippet engine
-  use 'hrsh7th/vim-vsnip'
-  
+
   -- C/C++ formatting
   use 'rhysd/vim-clang-format'
 

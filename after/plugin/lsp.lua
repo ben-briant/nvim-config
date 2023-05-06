@@ -117,19 +117,31 @@ cmp.setup({
   },
 })
 
--- Server configurations
--- Available here:
---  https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
-require('rust-tools').setup(opts)
-
-nvim_lsp['pyright'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+  -- The first entry (without a key) will be the default handler
+  -- and will be called for each installed server that doesn't have
+  -- a dedicated handler.
+  function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {}
+  end,
+  -- Next, you can provide a dedicated handler for specific servers.
+  -- For example, a handler override for the `rust_analyzer`:
+  -- ["rust_analyzer"] = function ()
+  --   require("rust-tools").setup{opts}
+  -- end
 }
 
-nvim_lsp.hls.setup{}
+-- lsp-zero setup
+local lsp = require('lsp-zero').preset({})
 
-nvim_lsp.bashls.setup{}
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+end)
 
-nvim_lsp.clangd.setup{}
+lsp.setup()
+
+
+require('rust-tools').setup(opts)
+-- require('lspconfig').rust_analyzer.setup(opts)

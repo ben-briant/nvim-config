@@ -22,7 +22,7 @@ return require('packer').startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
   
   -- onedark colour scheme
-  use 'joshdick/onedark.vim'
+  use 'navarasu/onedark.nvim'
   
   -- HTML tag support
   use 'vim-scripts/HTML-AutoCloseTag'
